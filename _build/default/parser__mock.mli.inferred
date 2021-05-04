@@ -1,0 +1,32 @@
+type token =
+    VAR
+  | TOURNE
+  | TIMES
+  | TANTQUE
+  | SINON
+  | SI
+  | SEMICOLON
+  | RPARA
+  | PLUS
+  | NOMBRE of int
+  | MINUS
+  | LPARA
+  | IDENT of string
+  | HAUTP
+  | FAIRE
+  | EOF
+  | END
+  | DIV
+  | BEGIN
+  | BASP
+  | AVANCE
+  | ALORS
+  | AFFECT
+val menhir_begin_marker : int
+val xv_s : Syntax.program
+val xv_program : Syntax.program
+val xv_instruction : Syntax.instruction list
+val xv_expression : Syntax.expression
+val xv_declarations : string list
+val xv_blocInstructions : Syntax.instruction list
+val menhir_end_marker : int

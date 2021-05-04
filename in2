@@ -1,12 +1,9 @@
-Var angle;
-Debut
-angle = 0-90;
+Var x;
+Var y;
+Var z;
+Debut 
+x= 10+20*-(5-5-5);
+y=0;
 BasPinceau;
-Avance 100;
-Tourne angle;
-Avance 100;
-Tourne 45;
-Avance 100;
-Tourne angle;
-Avance 100;
+Si x Alors Debut Si y Alors z=0 Sinon Debut Tourne(x);Avance(90); Fin ; Fin Sinon z=2;
 Fin
