@@ -1,0 +1,13 @@
+Var angle;
+Debut
+BasPinceau;
+angle = 0-90;
+Avance 100;
+Tourne angle;
+Si 0 Alors Debut Avance(200); angle=0-100 ; Tourne(angle); Avance(100); Fin Sinon Debut BasPinceau; Tourne(0-90); Avance(100); BasPinceau; Avance(200); Fin ; 
+Avance 100;
+Tourne angle;
+Avance 100;
+Tourne angle;
+Avance 100;
+Fin
