@@ -24,6 +24,8 @@ type instruction =
   | Tourne of expression
   | Cond of expression * instruction list * instruction list
   | Loop of expression * instruction list
+  | ChangeCouleur of expression
+  | ChangeEpaisseur of expression
   | HautPinceau
   | BasPinceau
   
@@ -64,8 +66,8 @@ let rec list_inst_to_string = function
           |HautPinceau -> "HautPinceau"^ "," ^ list_inst_to_string l'
           |BasPinceau -> "BasPinceau"^ "," ^ list_inst_to_string l'
           |Loop(e,l) -> "Loop("^expression_to_string e^","^list_inst_to_string l^")"^","^ list_inst_to_string l'
-          
-          
+          |ChangeCouleur(e) -> "ChangeCouleur("^expression_to_string e^")"^ "," ^ list_inst_to_string l'
+          |ChangeEpaisseur(e) -> "ChangeEpaisseur("^expression_to_string e^")"^ "," ^ list_inst_to_string l'
 
 let ast_to_string ast =
   let first = fst(ast) in

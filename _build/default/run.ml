@@ -41,5 +41,8 @@ let _ =
   | Interpreter.Error s -> 
       Printf.fprintf stderr "Interpretation error: %s\n" s;
       exit(-1);
-  | Graphics.Graphic_failure _ -> () ;;
+  | Graphics.Graphic_failure s -> 
+    Printf.fprintf stderr "Drawing error: %s\n" s;
+    exit(-1);
+   ;;
  

@@ -25,6 +25,8 @@ rule token = parse
      | "Tourne"	{TOURNE}
      | "BasPinceau"	{BASP}
      | "HautPinceau"	{HAUTP}
+     | "ChangeEpaisseur" {CHANGEEPAISSEUR}
+     | "ChangeCouleur" {CHANGECOULEUR}
      | "Tant que" {TANTQUE}
      | "Faire" {FAIRE}
      | ['a'-'z']['a'-'z''A'-'Z''0'-'9']* as s     { IDENT s}

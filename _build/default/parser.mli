@@ -20,6 +20,8 @@ type token =
   | EOF
   | END
   | DIV
+  | CHANGEEPAISSEUR
+  | CHANGECOULEUR
   | BEGIN
   | BASP
   | AVANCE

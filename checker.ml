@@ -52,7 +52,10 @@ let rec check_instruction decs = function
   | Tourne e -> if type_expression decs e = Int then () else raise (Error ("Inconsistent type for Tourne instruction"))
   | Cond(e,il1,il2)-> if type_expression decs e = Int then check_instructions decs (il1@il2) else raise (Error ("Inconsistent type for Condition instruction")) 
   | Loop(e,il)      -> if type_expression decs e = Int then check_instructions decs il else raise (Error ("Inconsistent type for Loop instruction"))
-(* check the typing of an instruction list *)
+  | ChangeCouleur(_) -> ()
+  | ChangeEpaisseur(_)-> ()
+  
+  (* check the typing of an instruction list *)
 and check_instructions decs il =
   List.iter
     (function i -> check_instruction decs i)

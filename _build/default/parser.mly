@@ -2,7 +2,7 @@
 %token <string> IDENT
 %token PLUS MINUS TIMES DIV
 %token LPARA RPARA 
-%token VAR SEMICOLON AVANCE TOURNE BASP HAUTP SI ALORS SINON TANTQUE FAIRE
+%token VAR SEMICOLON AVANCE TOURNE BASP HAUTP SI ALORS SINON TANTQUE FAIRE CHANGEEPAISSEUR CHANGECOULEUR
 %token AFFECT BEGIN END EOF
 %start <Syntax.program> s
 %left PLUS MINUS
@@ -28,6 +28,8 @@ instruction:
   | i=IDENT AFFECT e=expression						 {[Affectation(i,e)]}
   | BASP    {[BasPinceau]}
   | HAUTP {[HautPinceau]}
+  | CHANGEEPAISSEUR e=expression {[ChangeEpaisseur(e)]}
+  | CHANGECOULEUR e=expression {[ChangeCouleur(e)]}
   | TANTQUE e=expression FAIRE i=instruction {[Loop(e,i)]}
 
 

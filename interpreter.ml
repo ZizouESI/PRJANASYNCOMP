@@ -6,7 +6,7 @@ open Formes
 exception Error of string
 
 let bas=ref 0
-let position=ref (init_position 0. 0. 90 0)
+let position=ref (init_position 0. 0. 0 0)
 
 type value = I of int
 
@@ -39,7 +39,7 @@ let rec list_assoc_to_string = function
 
 
  
-let rec translate cmds bas env acc=
+(*let rec translate cmds bas env acc=
   match cmds with 
   |[] -> acc
   |x::l' -> match x with 
@@ -55,9 +55,9 @@ let rec translate cmds bas env acc=
             |BasPinceau -> translate l' 1 env acc
             |HautPinceau -> translate l' 0 env acc
             |Avance(y) -> if bas = 0 then translate l' bas env (acc@[Move(valI(eval env y))]) else translate l' bas env (acc@[Line(valI(eval env y))])
-  
+  *)
 let draw d =
-  let _border = 100 in
+  let _border = 30 in
   let p= !position in
   let (p2,drawing) = executer_list_command p d in
   position := p2;
@@ -79,9 +79,11 @@ let rec exec_inst env = function
                 | 0 ->  draw [Move(valI(eval env _e))]; env  
                 | 1 -> draw [Line(valI(eval env _e))] ; env
                 |_ -> env )
-|Tourne (_e) -> print_string ("Tourne : "^string_of_int (valI(eval env _e))^"\n");draw [Turn(valI(eval env _e))] ; env
+|Tourne (_e) -> draw [Turn(valI(eval env _e))] ; env
 |Cond(e,il1,il2) -> if valI(eval env e) <> 0 then exec_list env il1 else exec_list env il2
 |Loop(_e,_il)-> while valI(eval env _e) <> 0 do let _res =exec_list env _il in () done; env
+|ChangeCouleur(e)-> set_color (valI(eval env e)) ; env
+|ChangeEpaisseur(e) -> Graphics.set_line_width (valI(eval env e)) ; env
 
 and exec_list env il = List.fold_left (exec_inst) env il
 
@@ -98,7 +100,7 @@ and exec_list env il = List.fold_left (exec_inst) env il
     ()
 
 let drawing ast=
-  open_graph " 500x700";
+  open_graph " 1000x800";
   
   exec_program ast;
 

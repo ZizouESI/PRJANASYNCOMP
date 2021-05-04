@@ -2,8 +2,8 @@ Var x;
 Var y;
 Var z;
 Debut 
-x= 10+20*-(5-5);
+x= 10+20*-(5-5-5);
 y=0;
 BasPinceau;
-Si x Alors Debut Si y Alors z=0 Sinon Debut Tourne(-90);Avance(90); Fin ; Fin Sinon z=2;
+Si x Alors Debut Si y Alors z=0 Sinon Debut Tourne(x);Avance(90); Fin ; Fin Sinon z=2;
 Fin
