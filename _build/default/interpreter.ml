@@ -8,6 +8,17 @@ exception Error of string
 let bas=ref 0
 let position=ref (init_position 0. 0. 0 0)
 
+let list_couleurs = ref [
+  ("noir",Graphics.black);
+  ("blanc",Graphics.white);
+  ("rouge",Graphics.red);
+  ("vert",Graphics.green);
+  ("bleu",Graphics.blue);
+  ("jaune",Graphics.yellow);
+  ("cyan",Graphics.cyan);
+  ("magenta",Graphics.magenta)
+  ]
+
 type value = I of int
 
 let valI = function I n -> n 
@@ -82,7 +93,9 @@ let rec exec_inst env = function
 |Tourne (_e) -> draw [Turn(valI(eval env _e))] ; env
 |Cond(e,il1,il2) -> if valI(eval env e) <> 0 then exec_list env il1 else exec_list env il2
 |Loop(_e,_il)-> while valI(eval env _e) <> 0 do let _res =exec_list env _il in () done; env
-|ChangeCouleur(e)-> set_color (valI(eval env e)) ; env
+|ChangeCouleur(e)-> if (List.assoc e !list_couleurs) >= 0 then
+                      let _ = set_color (List.assoc e !list_couleurs) in env 
+                    else env
 |ChangeEpaisseur(e) -> Graphics.set_line_width (valI(eval env e)) ; env
 
 and exec_list env il = List.fold_left (exec_inst) env il

@@ -29,7 +29,7 @@ instruction:
   | BASP    {[BasPinceau]}
   | HAUTP {[HautPinceau]}
   | CHANGEEPAISSEUR e=expression {[ChangeEpaisseur(e)]}
-  | CHANGECOULEUR e=expression {[ChangeCouleur(e)]}
+  | CHANGECOULEUR e=IDENT {[ChangeCouleur(e)]}
   | TANTQUE e=expression FAIRE i=instruction {[Loop(e,i)]}
 
 
